@@ -1,20 +1,5 @@
-# Warehouse
+# Phoenix authentication with Pow
 
-To start your Phoenix server:
+A simple Phoenix application demonstrating authentication with [Pow](https://github.com/danschultzer/pow).
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
-
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+For more information see: [https://experimentingwithcode.com/phoenix-authentication-with-pow-part-1/](https://experimentingwithcode.com/phoenix-authentication-with-pow-part-1)
