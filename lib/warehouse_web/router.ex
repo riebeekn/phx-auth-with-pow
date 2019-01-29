@@ -1,6 +1,7 @@
 defmodule WarehouseWeb.Router do
   use WarehouseWeb, :router
   use Pow.Phoenix.Router
+  use Pow.Extension.Phoenix.Router, otp_app: :warehouse
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -24,6 +25,7 @@ defmodule WarehouseWeb.Router do
     pipe_through :browser
 
     pow_routes()
+    pow_extension_routes()
   end
 
   scope "/", WarehouseWeb do
