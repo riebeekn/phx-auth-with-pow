@@ -21,7 +21,12 @@ config :warehouse, WarehouseWeb.Endpoint,
 config :warehouse, :pow,
   user: Warehouse.Users.User,
   repo: Warehouse.Repo,
-  web_module: WarehouseWeb
+  web_module: WarehouseWeb,
+  extensions: [PowPersistentSession, PowResetPassword, PowEmailConfirmation],
+  controller_callbacks: Pow.Extension.Phoenix.ControllerCallbacks,
+  mailer_backend: WarehouseWeb.PowMailer,
+  routes_backend: WarehouseWeb.Pow.Routes,
+  messages_backend: WarehouseWeb.Pow.Messages
 
 # Configures Elixir's Logger
 config :logger, :console,

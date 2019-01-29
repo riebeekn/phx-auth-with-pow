@@ -44,6 +44,8 @@ defmodule WarehouseWeb.Endpoint do
 
   # enable Pow session based authentication
   plug Pow.Plug.Session, otp_app: :warehouse
+  # enable Pow persistent sessions
+  plug PowPersistentSession.Plug.Cookie
 
   plug WarehouseWeb.Router
 end
