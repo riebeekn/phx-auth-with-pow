@@ -24,7 +24,7 @@ config :warehouse, :pow,
   web_module: WarehouseWeb,
   extensions: [PowPersistentSession, PowResetPassword, PowEmailConfirmation],
   controller_callbacks: Pow.Extension.Phoenix.ControllerCallbacks,
-  mailer_backend: WarehouseWeb.PowMailer,
+  mailer_backend: WarehouseWeb.Pow.Mailer,
   routes_backend: WarehouseWeb.Pow.Routes,
   messages_backend: WarehouseWeb.Pow.Messages
 

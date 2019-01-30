@@ -1,10 +1,9 @@
 defmodule WarehouseWeb.Pow.Messages do
   use Pow.Phoenix.Messages
-  # Note: if customizing the messages of an extension the
-  # 'use Pow.Extension.Phoenix.Messages' statement is required
-  # as well as a reference to the extension, i.e.
-  # use Pow.Extension.Phoenix.Messages,
-  #  extensions: [ResetPassword]
+  # since we're using the reset password and email confirmation
+  # extensions we need to include them as well
+  use Pow.Extension.Phoenix.Messages,
+   extensions: [PowResetPassword, PowEmailConfirmation]
 
   import WarehouseWeb.Gettext
 
