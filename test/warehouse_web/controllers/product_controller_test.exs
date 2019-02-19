@@ -12,6 +12,13 @@ defmodule WarehouseWeb.ProductControllerTest do
     product
   end
 
+  setup %{conn: conn} do
+    user = user_fixture()
+    conn = assign(conn, :current_user, user)
+
+    {:ok, conn: conn}
+  end
+
   describe "index" do
     test "lists all products", %{conn: conn} do
       conn = get(conn, Routes.product_path(conn, :index))
@@ -28,13 +35,13 @@ defmodule WarehouseWeb.ProductControllerTest do
 
   describe "create product" do
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.product_path(conn, :create), product: @create_attrs)
+      create_conn = post(conn, Routes.product_path(conn, :create), product: @create_attrs)
 
-      assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == Routes.product_path(conn, :show, id)
+      assert %{id: id} = redirected_params(create_conn)
+      assert redirected_to(create_conn) == Routes.product_path(create_conn, :show, id)
 
-      conn = get(conn, Routes.product_path(conn, :show, id))
-      assert html_response(conn, 200) =~ "Show Product"
+      show_conn = get(conn, Routes.product_path(conn, :show, id))
+      assert html_response(show_conn, 200) =~ "Show Product"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
@@ -56,11 +63,11 @@ defmodule WarehouseWeb.ProductControllerTest do
     setup [:create_product]
 
     test "redirects when data is valid", %{conn: conn, product: product} do
-      conn = put(conn, Routes.product_path(conn, :update, product), product: @update_attrs)
-      assert redirected_to(conn) == Routes.product_path(conn, :show, product)
+      update_conn = put(conn, Routes.product_path(conn, :update, product), product: @update_attrs)
+      assert redirected_to(update_conn) == Routes.product_path(update_conn, :show, product)
 
-      conn = get(conn, Routes.product_path(conn, :show, product))
-      assert html_response(conn, 200) =~ "some updated name"
+      show_conn = get(conn, Routes.product_path(conn, :show, product))
+      assert html_response(show_conn, 200) =~ "some updated name"
     end
 
     test "renders errors when data is invalid", %{conn: conn, product: product} do
@@ -73,8 +80,8 @@ defmodule WarehouseWeb.ProductControllerTest do
     setup [:create_product]
 
     test "deletes chosen product", %{conn: conn, product: product} do
-      conn = delete(conn, Routes.product_path(conn, :delete, product))
-      assert redirected_to(conn) == Routes.product_path(conn, :index)
+      delete_conn = delete(conn, Routes.product_path(conn, :delete, product))
+      assert redirected_to(delete_conn) == Routes.product_path(delete_conn, :index)
       assert_error_sent 404, fn ->
         get(conn, Routes.product_path(conn, :show, product))
       end
